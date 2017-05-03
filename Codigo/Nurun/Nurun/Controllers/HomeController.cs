@@ -60,6 +60,12 @@ namespace Nurun.Controllers
                 return RedirectToAction("Login");
             }
         }
+
+        public ActionResult CloseSession()
+        {
+            Session.Clear();
+            return RedirectToAction("Login");
+        }
  
         public ActionResult CreateUser()
         {

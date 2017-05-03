@@ -9,8 +9,11 @@
 
 namespace Nurun.Data
 {
+    using Nurun.Models;
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
     
     public partial class Medicos
     {
@@ -21,10 +24,16 @@ namespace Nurun.Data
         }
     
         public int idMedico { get; set; }
+        [Required]
         public string Nombres { get; set; }
+        [Required]
         public string Apellidos { get; set; }
         public Nullable<System.DateTime> FechaCreacion { get; set; }
+        [Required]
+        [Display(Name = "Hospital")]
         public int idHospital { get; set; }
+        public string HospitalNombre { get; set; }
+        public IEnumerable<SelectListItem> Hospitals { get; set; }
     
         public virtual Hospitales Hospitales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

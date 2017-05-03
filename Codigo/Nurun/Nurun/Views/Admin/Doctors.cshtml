@@ -7,7 +7,7 @@
 <h2>Médicos</h2>
 
 <p>
-    @Html.ActionLink("Crear Nuevo", "Create")
+    @Html.ActionLink("Registrar Médico", "CreateDoctor")
 </p>
 <table class="table">
     <tr>
@@ -32,7 +32,7 @@
             @Html.DisplayFor(modelItem => item.Apellidos)
         </td>
         <td>
-            
+            @Html.DisplayFor(modelItem => item.HospitalNombre)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.idMedico })

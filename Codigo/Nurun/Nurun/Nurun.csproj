@@ -229,6 +229,7 @@
     <Content Include="Views\Admin\Hospitals.cshtml" />
     <Content Include="Views\Admin\Doctors.cshtml" />
     <Content Include="Views\Admin\CreateHospital.cshtml" />
+    <Content Include="Views\Admin\CreateDoctor.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -1,4 +1,5 @@
-﻿using Nurun.Models;
+﻿using Nurun.Data;
+using Nurun.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,10 +46,74 @@ namespace Nurun.Controllers
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateHospital(Hospitales objHosp)
+        {
+            if (ModelState.IsValid)
+            {
+                HospitalesModel model = new HospitalesModel();
+                var result = model.crearHospital(objHosp);
+
+                if (result.Resultado)
+                {
+                    Response.Write("<script>alert('Hospital creado con éxito.');</script>");
+                    return RedirectToAction("Hospitals");
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(result.Mensaje))
+                        Response.Write("<script>alert('No se pudo crear el hospital, intente nuevamente.');</script>");
+                    else
+                        Response.Write(string.Format("<script>alert('Error al crear el hospital: {0}');</script>", result.Mensaje));
+                }
+
+
+            }
+            return View(objHosp);
+        }
+
         public ActionResult Doctors()
         {
             DoctorsModel model = new DoctorsModel();
-            return View(model.obtenerHospitales());
+            return View(model.obtenerDoctores());
+        }
+
+        public ActionResult CreateDoctor()
+        {
+            Medicos m = new Medicos();
+            HospitalesModel model = new HospitalesModel();
+            var hospitales = model.obtenerHospitalesSelect();
+
+            m.Hospitals = hospitales;
+            return View(m);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateDoctor(Medicos objMed)
+        {
+            if (ModelState.IsValid)
+            {
+                DoctorsModel model = new DoctorsModel();
+                var result = model.registrarMedico(objMed);
+
+                if (result.Resultado)
+                {
+                    Response.Write("<script>alert('Médico registrado con éxito.');</script>");
+                    return RedirectToAction("Doctors");
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(result.Mensaje))
+                        Response.Write("<script>alert('No se pudo registrar al médico, intente nuevamente.');</script>");
+                    else
+                        Response.Write(string.Format("<script>alert('Error al registrar al médico: {0}');</script>", result.Mensaje));
+                }
+
+
+            }
+            return View(objMed);
         }
     }
 }
