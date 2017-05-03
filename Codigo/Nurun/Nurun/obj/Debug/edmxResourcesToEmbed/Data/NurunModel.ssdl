@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bcEcoTinyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Hospitales">
+    <Key>
+      <PropertyRef Name="IdHospital" />
+    </Key>
+    <Property Name="IdHospital" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="FechaCreacion" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Medicos">
+    <Key>
+      <PropertyRef Name="idMedico" />
+    </Key>
+    <Property Name="idMedico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombres" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Apellidos" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="FechaCreacion" Type="datetime" />
+    <Property Name="idHospital" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RelHospitalMedico">
+    <Key>
+      <PropertyRef Name="idRelacionHospitalMedico" />
+    </Key>
+    <Property Name="idRelacionHospitalMedico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idHospital" Type="int" Nullable="false" />
+    <Property Name="idMedico" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="IdRol" />
+    </Key>
+    <Property Name="IdRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Usuario" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Nombres" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Apellidos" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="EstaActivo" Type="bit" Nullable="false" />
+    <Property Name="IdRol" Type="int" Nullable="false" />
+    <Property Name="FechaCreacion" Type="datetime" />
+    <Property Name="FechaModificacion" Type="datetime" />
+    <Property Name="IdMedico" Type="int" />
+  </EntityType>
+  <EntityType Name="VisitaMedica">
+    <Key>
+      <PropertyRef Name="idVisita" />
+    </Key>
+    <Property Name="idVisita" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FechaVisita" Type="datetime" Nullable="false" />
+    <Property Name="idUsuario" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Medicos_Hospital">
+    <End Role="Hospitales" Type="Self.Hospitales" Multiplicity="1" />
+    <End Role="Medicos" Type="Self.Medicos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hospitales">
+        <PropertyRef Name="IdHospital" />
+      </Principal>
+      <Dependent Role="Medicos">
+        <PropertyRef Name="idHospital" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RelHospitalMedico_Hospital">
+    <End Role="Hospitales" Type="Self.Hospitales" Multiplicity="1" />
+    <End Role="RelHospitalMedico" Type="Self.RelHospitalMedico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hospitales">
+        <PropertyRef Name="IdHospital" />
+      </Principal>
+      <Dependent Role="RelHospitalMedico">
+        <PropertyRef Name="idHospital" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RelHospitalMedico_Medicos">
+    <End Role="Medicos" Type="Self.Medicos" Multiplicity="1" />
+    <End Role="RelHospitalMedico" Type="Self.RelHospitalMedico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medicos">
+        <PropertyRef Name="idMedico" />
+      </Principal>
+      <Dependent Role="RelHospitalMedico">
+        <PropertyRef Name="idMedico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_Rol">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="IdRol" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VisitaMedica_Usuario">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="VisitaMedica" Type="Self.VisitaMedica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="VisitaMedica">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="bcEcoTinyModelStoreContainer">
+    <EntitySet Name="Hospitales" EntityType="Self.Hospitales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Medicos" EntityType="Self.Medicos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RelHospitalMedico" EntityType="Self.RelHospitalMedico" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VisitaMedica" EntityType="Self.VisitaMedica" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Medicos_Hospital" Association="Self.FK_Medicos_Hospital">
+      <End Role="Hospitales" EntitySet="Hospitales" />
+      <End Role="Medicos" EntitySet="Medicos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RelHospitalMedico_Hospital" Association="Self.FK_RelHospitalMedico_Hospital">
+      <End Role="Hospitales" EntitySet="Hospitales" />
+      <End Role="RelHospitalMedico" EntitySet="RelHospitalMedico" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RelHospitalMedico_Medicos" Association="Self.FK_RelHospitalMedico_Medicos">
+      <End Role="Medicos" EntitySet="Medicos" />
+      <End Role="RelHospitalMedico" EntitySet="RelHospitalMedico" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_Rol" Association="Self.FK_Usuario_Rol">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VisitaMedica_Usuario" Association="Self.FK_VisitaMedica_Usuario">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="VisitaMedica" EntitySet="VisitaMedica" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

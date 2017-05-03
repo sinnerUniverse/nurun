@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Nurun.Data.Usuarios>
+
+@{
+    ViewBag.Title = "ActivateUsers";
+}
+
+@*@Html.BeginForm("ActivateUsers", "Admin", FormMethod.Post)
+{*@
+<h2>Administrar Sistema</h2>
+    <table with="200px">
+        <tr>
+            <th>
+                @Html.ActionLink("Hospitales", "Hospitals")
+            </th>
+            <th>&nbsp;</th>
+            <th>
+                @Html.ActionLink("Médicos", "Doctors")
+            </th>
+        </tr>
+    </table>
+    <br />
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellidos)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombres)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellidos)
+                </td>
+                <td>
+                    @Html.ActionLink("Activar", "ActivateUsers", new { id = item.IdUsuario })
+                </td>
+            </tr>
+        }
+
+    </table>
+    @*}*@

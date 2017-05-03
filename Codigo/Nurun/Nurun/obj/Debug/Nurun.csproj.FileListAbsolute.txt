@@ -1,0 +1,89 @@
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\Nurun.dll.config
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\Nurun.dll
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\Nurun.pdb
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\Antlr3.Runtime.dll
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\Microsoft.Web.Infrastructure.dll
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\Newtonsoft.Json.dll
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\System.Web.Helpers.dll
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\System.Web.Mvc.dll
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\System.Web.Optimization.dll
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\System.Web.Razor.dll
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\System.Web.WebPages.Deployment.dll
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\System.Web.WebPages.dll
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\System.Web.WebPages.Razor.dll
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\WebGrease.dll
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\System.Web.Helpers.xml
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\System.Web.Mvc.xml
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\System.Web.Optimization.xml
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\System.Web.Razor.xml
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\System.Web.WebPages.xml
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\System.Web.WebPages.Deployment.xml
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\System.Web.WebPages.Razor.xml
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\Antlr3.Runtime.pdb
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\Newtonsoft.Json.xml
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\obj\Debug\Nurun.dll
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\obj\Debug\Nurun.pdb
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\EntityFramework.dll
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\EntityFramework.SqlServer.dll
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\EntityFramework.xml
+c:\users\extsistmovilidad31\documents\visual studio 2013\Projects\Nurun\Nurun\bin\EntityFramework.SqlServer.xml
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\Nurun.dll.config
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\Nurun.dll
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\Nurun.pdb
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\Antlr3.Runtime.dll
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\EntityFramework.dll
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\EntityFramework.SqlServer.dll
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\Newtonsoft.Json.dll
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\System.Web.Helpers.dll
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\System.Web.Mvc.dll
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\System.Web.Optimization.dll
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\System.Web.Razor.dll
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\System.Web.WebPages.dll
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\System.Web.WebPages.Razor.dll
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\WebGrease.dll
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\EntityFramework.xml
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\EntityFramework.SqlServer.xml
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\System.Web.Helpers.xml
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\System.Web.Mvc.xml
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\System.Web.Optimization.xml
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\System.Web.Razor.xml
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\System.Web.WebPages.xml
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\System.Web.WebPages.Razor.xml
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\Antlr3.Runtime.pdb
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\bin\Newtonsoft.Json.xml
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\obj\Debug\Nurun.dll
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\obj\Debug\Nurun.pdb
+C:\Users\Yossely\Desktop\nurun\Codigo\Nurun\Nurun\obj\Debug\Nurun.csprojResolveAssemblyReference.cache
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\Nurun.dll.config
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\Nurun.dll
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\Nurun.pdb
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\Antlr3.Runtime.dll
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\EntityFramework.dll
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\EntityFramework.SqlServer.dll
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\Microsoft.Web.Infrastructure.dll
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\Newtonsoft.Json.dll
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\System.Web.Helpers.dll
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\System.Web.Mvc.dll
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\System.Web.Optimization.dll
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\System.Web.Razor.dll
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\System.Web.WebPages.Deployment.dll
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\System.Web.WebPages.dll
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\System.Web.WebPages.Razor.dll
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\WebGrease.dll
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\EntityFramework.xml
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\EntityFramework.SqlServer.xml
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\System.Web.Helpers.xml
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\System.Web.Mvc.xml
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\System.Web.Optimization.xml
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\System.Web.Razor.xml
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\System.Web.WebPages.xml
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\System.Web.WebPages.Deployment.xml
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\System.Web.WebPages.Razor.xml
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\Antlr3.Runtime.pdb
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\bin\Newtonsoft.Json.xml
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\obj\Debug\Nurun.csprojResolveAssemblyReference.cache
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\obj\Debug\Nurun.dll
+C:\sinner_universe\nurun\Codigo\Nurun\Nurun\obj\Debug\Nurun.pdb

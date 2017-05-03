@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NurunModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="NurunEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="UserSet" EntityType="NurunModel.User" />
+    <EntitySet Name="RoleSet" EntityType="NurunModel.Role" />
+    <AssociationSet Name="UserRole" Association="NurunModel.UserRole">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Role" EntitySet="RoleSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" />
+    <NavigationProperty Name="RoleId" Relationship="NurunModel.UserRole" FromRole="User" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="NurunModel.UserRole" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <Association Name="UserRole">
+    <End Type="NurunModel.User" Role="User" Multiplicity="1" />
+    <End Type="NurunModel.Role" Role="Role" Multiplicity="1" />
+  </Association>
+</Schema>

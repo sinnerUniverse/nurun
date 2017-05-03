@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Nurun.Data.Hospitales>
+
+@{
+    ViewBag.Title = "Hospitals";
+}
+
+<h2>Hospitales</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Regresar", "ActivateUsers")
+</p>

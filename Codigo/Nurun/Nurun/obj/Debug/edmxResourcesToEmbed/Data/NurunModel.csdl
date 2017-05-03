@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bcEcoTinyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="IdRol" />
+    </Key>
+    <Property Name="IdRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuario_Rol" FromRole="Roles" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nombres" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellidos" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EstaActivo" Type="Boolean" Nullable="false" />
+    <Property Name="IdRol" Type="Int32" Nullable="false" />
+    <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+    <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK_Usuario_Rol" FromRole="Usuarios" ToRole="Roles" />
+    <Property Name="IdMedico" Type="Int32" />
+    <NavigationProperty Name="VisitaMedica" Relationship="bcEcoTinyModel.FK_VisitaMedica_Usuario" FromRole="Usuarios" ToRole="VisitaMedica" />
+  </EntityType>
+  <Association Name="FK_Usuario_Rol">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="IdRol" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NurunEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+    <AssociationSet Name="FK_Usuario_Rol" Association="Self.FK_Usuario_Rol">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+    <EntitySet Name="Hospitales" EntityType="bcEcoTinyModel.Hospitales" />
+    <EntitySet Name="Medicos" EntityType="bcEcoTinyModel.Medicos" />
+    <EntitySet Name="RelHospitalMedico" EntityType="bcEcoTinyModel.RelHospitalMedico" />
+    <EntitySet Name="VisitaMedica" EntityType="bcEcoTinyModel.VisitaMedica" />
+    <AssociationSet Name="FK_Medicos_Hospital" Association="bcEcoTinyModel.FK_Medicos_Hospital">
+      <End Role="Hospitales" EntitySet="Hospitales" />
+      <End Role="Medicos" EntitySet="Medicos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RelHospitalMedico_Hospital" Association="bcEcoTinyModel.FK_RelHospitalMedico_Hospital">
+      <End Role="Hospitales" EntitySet="Hospitales" />
+      <End Role="RelHospitalMedico" EntitySet="RelHospitalMedico" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RelHospitalMedico_Medicos" Association="bcEcoTinyModel.FK_RelHospitalMedico_Medicos">
+      <End Role="Medicos" EntitySet="Medicos" />
+      <End Role="RelHospitalMedico" EntitySet="RelHospitalMedico" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VisitaMedica_Usuario" Association="bcEcoTinyModel.FK_VisitaMedica_Usuario">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="VisitaMedica" EntitySet="VisitaMedica" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Hospitales">
+    <Key>
+      <PropertyRef Name="IdHospital" />
+    </Key>
+    <Property Name="IdHospital" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Medicos" Relationship="bcEcoTinyModel.FK_Medicos_Hospital" FromRole="Hospitales" ToRole="Medicos" />
+    <NavigationProperty Name="RelHospitalMedico" Relationship="bcEcoTinyModel.FK_RelHospitalMedico_Hospital" FromRole="Hospitales" ToRole="RelHospitalMedico" />
+  </EntityType>
+  <EntityType Name="Medicos">
+    <Key>
+      <PropertyRef Name="idMedico" />
+    </Key>
+    <Property Name="idMedico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombres" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Apellidos" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+    <Property Name="idHospital" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Hospitales" Relationship="bcEcoTinyModel.FK_Medicos_Hospital" FromRole="Medicos" ToRole="Hospitales" />
+    <NavigationProperty Name="RelHospitalMedico" Relationship="bcEcoTinyModel.FK_RelHospitalMedico_Medicos" FromRole="Medicos" ToRole="RelHospitalMedico" />
+  </EntityType>
+  <EntityType Name="RelHospitalMedico">
+    <Key>
+      <PropertyRef Name="idRelacionHospitalMedico" />
+    </Key>
+    <Property Name="idRelacionHospitalMedico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idHospital" Type="Int32" Nullable="false" />
+    <Property Name="idMedico" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Hospitales" Relationship="bcEcoTinyModel.FK_RelHospitalMedico_Hospital" FromRole="RelHospitalMedico" ToRole="Hospitales" />
+    <NavigationProperty Name="Medicos" Relationship="bcEcoTinyModel.FK_RelHospitalMedico_Medicos" FromRole="RelHospitalMedico" ToRole="Medicos" />
+  </EntityType>
+  <EntityType Name="VisitaMedica">
+    <Key>
+      <PropertyRef Name="idVisita" />
+    </Key>
+    <Property Name="idVisita" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaVisita" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="idUsuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Usuarios" Relationship="bcEcoTinyModel.FK_VisitaMedica_Usuario" FromRole="VisitaMedica" ToRole="Usuarios" />
+  </EntityType>
+  <Association Name="FK_Medicos_Hospital">
+    <End Type="bcEcoTinyModel.Hospitales" Role="Hospitales" Multiplicity="1" />
+    <End Type="bcEcoTinyModel.Medicos" Role="Medicos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hospitales">
+        <PropertyRef Name="IdHospital" />
+      </Principal>
+      <Dependent Role="Medicos">
+        <PropertyRef Name="idHospital" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RelHospitalMedico_Hospital">
+    <End Type="bcEcoTinyModel.Hospitales" Role="Hospitales" Multiplicity="1" />
+    <End Type="bcEcoTinyModel.RelHospitalMedico" Role="RelHospitalMedico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hospitales">
+        <PropertyRef Name="IdHospital" />
+      </Principal>
+      <Dependent Role="RelHospitalMedico">
+        <PropertyRef Name="idHospital" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RelHospitalMedico_Medicos">
+    <End Type="bcEcoTinyModel.Medicos" Role="Medicos" Multiplicity="1" />
+    <End Type="bcEcoTinyModel.RelHospitalMedico" Role="RelHospitalMedico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medicos">
+        <PropertyRef Name="idMedico" />
+      </Principal>
+      <Dependent Role="RelHospitalMedico">
+        <PropertyRef Name="idMedico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VisitaMedica_Usuario">
+    <End Type="bcEcoTinyModel.Usuarios" Role="Usuarios" Multiplicity="1" />
+    <End Type="bcEcoTinyModel.VisitaMedica" Role="VisitaMedica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="VisitaMedica">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

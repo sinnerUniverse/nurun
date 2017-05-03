@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NurunModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="NurunModelStoreContainer">
+    <EntitySet Name="UserSet" EntityType="NurunModel.Store.UserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RoleSet" EntityType="NurunModel.Store.RoleSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserRole" Association="NurunModel.Store.UserRole">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Role" EntitySet="RoleSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RoleId_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoleSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="UserRole">
+    <End Role="User" Type="NurunModel.Store.UserSet" Multiplicity="*" />
+    <End Role="Role" Type="NurunModel.Store.RoleSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

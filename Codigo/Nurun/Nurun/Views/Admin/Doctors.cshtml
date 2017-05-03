@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Nurun.Data.Medicos>
+
+@{
+    ViewBag.Title = "Doctors";
+}
+
+<h2>Médicos</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </th>
+        <th>
+            Hospital
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Apellidos)
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idMedico })
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Regresar", "ActivateUsers")
+</p>

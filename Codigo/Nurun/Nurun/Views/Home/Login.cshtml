@@ -1,0 +1,53 @@
+﻿@model Nurun.Data.Usuarios
+
+@{
+    ViewBag.Title = "Login";
+}
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    <fieldset>
+        <legend>Nurun Login</legend>
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @if (@ViewBag.Message != null)
+        {
+            <div style="border: 1px solid red">
+                @ViewBag.Message
+            </div>
+        }
+        <table>
+            <tr>
+                <td>Usuario</td>
+                <td>@Html.TextBoxFor(a => a.Usuario)</td>
+                <td>@Html.ValidationMessageFor(a => a.Usuario)</td>
+            </tr>
+            <tr>
+                <td>
+                    Contraseña
+                </td>
+                <td>
+                    @Html.PasswordFor(a => a.Password)
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(a => a.Password)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Iniciar Sesión" />
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    @Html.ActionLink("Crear Usuario", "CreateUser")
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </fieldset>
+}  
