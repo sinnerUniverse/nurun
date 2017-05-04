@@ -112,5 +112,10 @@ namespace Nurun.Controllers
 
             return View();
         }
+
+        private bool isNotLoged()
+        {
+            return object.Equals(null, Session["UserID"]);
+        }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Nurun.Models
 {
@@ -125,6 +126,21 @@ namespace Nurun.Models
                     && u.IdRol != 2);
 
                 return pacientesSinMedico.Union(pacientesDelMedico).ToList<Usuarios>(); ;
+            }
+        }
+
+        public IEnumerable<SelectListItem> obtenerPacientesSelect()
+        {
+            using (NurunEntities db = new NurunEntities())
+            {
+                var hospitales = db.Usuarios.Where(u => u.IdRol != 2).ToList<Usuarios>().Select(x =>
+                        new SelectListItem
+                        {
+                            Value = x.IdUsuario.ToString(),
+                            Text = string.Format("{0} {1}", x.Nombres, x.Apellidos)
+                        });
+
+                return new SelectList(hospitales, "Value", "Text");
             }
         }
     }

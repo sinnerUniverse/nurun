@@ -146,4 +146,3 @@ C:\Desarrollo\Nurun\Codigo\Nurun\Nurun\bin\Antlr3.Runtime.pdb
 C:\Desarrollo\Nurun\Codigo\Nurun\Nurun\bin\Newtonsoft.Json.xml
 C:\Desarrollo\Nurun\Codigo\Nurun\Nurun\obj\Debug\Nurun.dll
 C:\Desarrollo\Nurun\Codigo\Nurun\Nurun\obj\Debug\Nurun.pdb
-C:\Desarrollo\Nurun\Codigo\Nurun\Nurun\obj\Debug\Nurun.csprojResolveAssemblyReference.cache

@@ -13,6 +13,9 @@ namespace Nurun.Controllers
         // GET: User
         public ActionResult Visitas()
         {
+            if (isNotLoged())
+                return RedirectToAction("Login", "Home");
+
             VisitasMedicasModel model = new VisitasMedicasModel();
             var idUsuario = int.Parse(Session["UserID"].ToString());
             var visitas = model.obtenerVisitas(idUsuario);
@@ -23,6 +26,9 @@ namespace Nurun.Controllers
 
         public ActionResult CreateVisit()
         {
+            if (isNotLoged())
+                return RedirectToAction("Login", "Home");
+
             return View();
         }
 
@@ -30,6 +36,9 @@ namespace Nurun.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateVisit(VisitaMedica objVis)
         {
+            if (isNotLoged())
+                return RedirectToAction("Login", "Home");
+
             if (ModelState.IsValid)
             {
                 VisitasMedicasModel model = new VisitasMedicasModel();
@@ -52,6 +61,11 @@ namespace Nurun.Controllers
 
             }
             return View(objVis);
+        }
+
+        private bool isNotLoged()
+        {
+            return object.Equals(null, Session["UserID"]);
         }
     }
 }

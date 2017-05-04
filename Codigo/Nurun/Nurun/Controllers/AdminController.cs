@@ -13,6 +13,9 @@ namespace Nurun.Controllers
         // GET: Admin
         public ActionResult ActivateUsers(int? id)
         {
+            if (isNotLoged())
+                return RedirectToAction("Login", "Home");
+
             if (id != null)
                 return RedirectToAction("Edit", new { id = id });
             else
@@ -24,6 +27,9 @@ namespace Nurun.Controllers
      
         public ActionResult Edit(int id)
         {
+            if (isNotLoged())
+                return RedirectToAction("Login", "Home");
+
             UsuariosModel model = new UsuariosModel();
             var result = model.activarUsuario(id);
 
@@ -37,12 +43,18 @@ namespace Nurun.Controllers
 
         public ActionResult Hospitals()
         {
+            if (isNotLoged())
+                return RedirectToAction("Login", "Home");
+
             HospitalesModel model = new HospitalesModel();
             return View(model.obtenerHospitales());
         }
 
         public ActionResult CreateHospital()
         {
+            if (isNotLoged())
+                return RedirectToAction("Login", "Home");
+
             return View();
         }
 
@@ -50,6 +62,9 @@ namespace Nurun.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateHospital(Hospitales objHosp)
         {
+            if (isNotLoged())
+                return RedirectToAction("Login", "Home");
+
             if (ModelState.IsValid)
             {
                 HospitalesModel model = new HospitalesModel();
@@ -75,12 +90,18 @@ namespace Nurun.Controllers
 
         public ActionResult Doctors()
         {
+            if (isNotLoged())
+                return RedirectToAction("Login", "Home");
+
             DoctorsModel model = new DoctorsModel();
             return View(model.obtenerDoctores());
         }
 
         public ActionResult CreateDoctor()
         {
+            if (isNotLoged())
+                return RedirectToAction("Login", "Home");
+
             Medicos m = new Medicos();
             HospitalesModel model = new HospitalesModel();
             var hospitales = model.obtenerHospitalesSelect();
@@ -93,6 +114,9 @@ namespace Nurun.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateDoctor(Medicos objMed)
         {
+            if (isNotLoged())
+                return RedirectToAction("Login", "Home");
+
             if (ModelState.IsValid)
             {
                 DoctorsModel model = new DoctorsModel();
@@ -118,6 +142,9 @@ namespace Nurun.Controllers
 
         public ActionResult AsignatePatients(int id)
         {
+            if (isNotLoged())
+                return RedirectToAction("Login", "Home");
+
             UsuariosModel model = new UsuariosModel();
             return View(model.obtenerPacientes(id));            
         }
@@ -125,6 +152,9 @@ namespace Nurun.Controllers
         [HttpPost]
         public ActionResult AsignatePatients(FormCollection form)
         {
+            if (isNotLoged())
+                return RedirectToAction("Login", "Home");
+
             string selected = Request.Form["chkSeleccionado"].ToString();
             Resultados result = new Resultados();
             UsuariosModel model = new UsuariosModel();
@@ -146,6 +176,27 @@ namespace Nurun.Controllers
             }
 
             return RedirectToAction("AsignatePatients", new { id = idMedico });
+        }
+
+        public ActionResult Reports()
+        {
+            if (isNotLoged())
+                return RedirectToAction("Login", "Home");
+
+            VisitasMedicasModel vModel = new VisitasMedicasModel();
+            DoctorsModel dModel = new DoctorsModel();
+            HospitalesModel hModel = new HospitalesModel();
+            UsuariosModel uModel = new UsuariosModel();
+            
+            ViewBag.Medicos = dModel.obtenerDoctorsSelect();
+            ViewBag.Clinicas = hModel.obtenerHospitalesSelect();
+            ViewBag.Pacientes = uModel.obtenerPacientesSelect();
+            return View(vModel.obtenerVisitas(0));
+        }
+
+        private bool isNotLoged()
+        {
+            return object.Equals(null, Session["UserID"]);
         }
     }
 }

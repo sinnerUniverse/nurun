@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Nurun.Models.Visitas>
+
+@{
+    ViewBag.Title = "Reports";
+}
+
+<h2>Reportes</h2>
+    <table class="table">
+        <tr>
+            <th>
+                Paciente:
+            </th>
+            <th>
+                Médico
+            </th>
+            <th>
+                Hospital
+            </th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DropDownList("idUsuario", (SelectList) ViewBag.Pacientes, "Seleccione")
+            </th>
+            <th>
+                @Html.DropDownList("idMedico", (SelectList) ViewBag.Medicos, "Seleccione")
+            </th>
+            <th>
+                @Html.DropDownList("idHospital", (SelectList) ViewBag.Clinicas, "Seleccione")
+            </th>
+            <th>
+                <input value="Buscar" type="submit" />
+            </th>
+        </tr>
+    </table>
+    <table class="table">
+        <tr>
+            <th>
+                Fecha
+            </th>
+            <th>
+                Médico
+            </th>
+            <th>
+                Hospital
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cita.FechaVisita)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MedicoAsignado.NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MedicoAsignado.HospitalNombre)
+                </td>
+            </tr>
+        }
+
+    </table>
+    <p>
+        @Html.ActionLink("Regresar", "ActivateUsers")
+    </p>

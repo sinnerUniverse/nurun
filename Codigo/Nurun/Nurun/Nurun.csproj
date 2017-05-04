@@ -237,6 +237,7 @@
     <Content Include="Views\Admin\AsignatePatients.cshtml" />
     <Content Include="Views\User\Visitas.cshtml" />
     <Content Include="Views\User\CreateVisit.cshtml" />
+    <Content Include="Views\Admin\Reports.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
