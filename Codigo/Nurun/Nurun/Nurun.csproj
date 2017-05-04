@@ -123,6 +123,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Data\Hospitales.cs">
       <DependentUpon>NurunModel.tt</DependentUpon>
     </Compile>
@@ -163,6 +164,8 @@
     <Compile Include="Models\HospitalesModel.cs" />
     <Compile Include="Models\Resultados.cs" />
     <Compile Include="Models\UsuariosModel.cs" />
+    <Compile Include="Models\Visitas.cs" />
+    <Compile Include="Models\VisitasMedicasModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -196,6 +199,7 @@
       <DependentUpon>NurunModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\DatePickerReady.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -230,6 +234,9 @@
     <Content Include="Views\Admin\Doctors.cshtml" />
     <Content Include="Views\Admin\CreateHospital.cshtml" />
     <Content Include="Views\Admin\CreateDoctor.cshtml" />
+    <Content Include="Views\Admin\AsignatePatients.cshtml" />
+    <Content Include="Views\User\Visitas.cshtml" />
+    <Content Include="Views\User\CreateVisit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

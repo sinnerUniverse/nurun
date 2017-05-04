@@ -115,5 +115,37 @@ namespace Nurun.Controllers
             }
             return View(objMed);
         }
+
+        public ActionResult AsignatePatients(int id)
+        {
+            UsuariosModel model = new UsuariosModel();
+            return View(model.obtenerPacientes(id));            
+        }
+
+        [HttpPost]
+        public ActionResult AsignatePatients(FormCollection form)
+        {
+            string selected = Request.Form["chkSeleccionado"].ToString();
+            Resultados result = new Resultados();
+            UsuariosModel model = new UsuariosModel();
+            var idMedico = int.Parse(Request.Url.Segments[3]);
+
+            result = model.asignarPaciente(selected, idMedico);
+
+            if (result.Resultado)
+            {
+                Response.Write("<script>alert('Paciente asignado con éxito.');</script>");
+                return RedirectToAction("Doctors");
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(result.Mensaje))
+                    Response.Write("<script>alert('No se pudo registrar el paciente al médico, intente nuevamente.');</script>");
+                else
+                    Response.Write(string.Format("<script>alert('Error al asignar el paciente al médico: {0}');</script>", result.Mensaje));
+            }
+
+            return RedirectToAction("AsignatePatients", new { id = idMedico });
+        }
     }
 }

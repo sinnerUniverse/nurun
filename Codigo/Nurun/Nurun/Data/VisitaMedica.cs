@@ -11,10 +11,13 @@ namespace Nurun.Data
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class VisitaMedica
     {
         public int idVisita { get; set; }
+        [Required]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime FechaVisita { get; set; }
         public int idUsuario { get; set; }
     

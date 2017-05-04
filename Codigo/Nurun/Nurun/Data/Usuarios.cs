@@ -38,6 +38,10 @@ namespace Nurun.Data
         public Nullable<System.DateTime> FechaCreacion { get; set; }
         public Nullable<System.DateTime> FechaModificacion { get; set; }
         public Nullable<int> IdMedico { get; set; }
+        public bool EstaSeleccionado {
+            get { return object.Equals(null, IdMedico) ? false : true; }
+            set { this.EstaSeleccionado = value; }
+        }
     
         public virtual Roles Roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

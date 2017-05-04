@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Nurun.Models.Visitas>
+
+@{
+    ViewBag.Title = "Visitas";
+}
+
+<h2>Visitas</h2>
+
+<p>
+    @Html.ActionLink("Registrar Visita", "CreateVisit", "User")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Fecha
+        </th>
+        <th>
+            Médico
+        </th>
+        <th>
+            Hospital
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cita.FechaVisita)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MedicoAsignado.NombreCompleto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MedicoAsignado.HospitalNombre)
+        </td>
+    </tr>
+}
+
+</table>

@@ -35,7 +35,7 @@ namespace Nurun.Controllers
                     Session["UserName"] = obj.Usuario.ToString();
                     Session["RolID"] = obj.IdRol.ToString();
                     if(obj.IdRol == 1)
-                        return RedirectToAction("UserDashBoard");
+                        return RedirectToAction("Visitas", "User");
                     else if (obj.IdRol == 2)
                         return RedirectToAction("ActivateUsers", "Admin");
                 }

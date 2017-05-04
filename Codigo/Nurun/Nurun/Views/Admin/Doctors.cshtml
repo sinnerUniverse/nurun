@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Nurun.Data.Medicos>
+﻿@model IEnumerable<Nurun.Data.MedicosDTO>
 
 @{
     ViewBag.Title = "Doctors";
@@ -35,7 +35,7 @@
             @Html.DisplayFor(modelItem => item.HospitalNombre)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idMedico })
+            @Html.ActionLink("Pacientes", "AsignatePatients", new { id = item.idMedico })
         </td>
     </tr>
 }

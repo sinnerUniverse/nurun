@@ -3,27 +3,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Nurun.Models
 {
     public class DoctorsModel
     {
-        public List<Medicos> obtenerDoctores()
+        public List<MedicosDTO> obtenerDoctores()
         {
             using (NurunEntities db = new NurunEntities())
             {
-                var medicos = db.Medicos.Join(db.Hospitales
-                    , m => m.idHospital
-                    , h => h.IdHospital
-                    , (m, h) => new Medicos()
-                    {
-                        idMedico = m.idMedico,
-                        idHospital = m.idHospital,
-                        Nombres = m.Nombres,
-                        Apellidos = m.Apellidos,
-                        HospitalNombre = h.Nombre
-                    }).ToList<Medicos>();
-                return medicos;
+
+                var medicos = (from m in db.Medicos
+                               join h in db.Hospitales on m.idHospital equals h.IdHospital
+                               select new MedicosDTO()
+                               {
+                                   idMedico = m.idMedico,
+                                   idHospital = m.idHospital,
+                                   Nombres = m.Nombres,
+                                   Apellidos = m.Apellidos,
+                                   HospitalNombre = h.Nombre
+                               }).ToList<MedicosDTO>();
+
+                return medicos; 
             }
         }
 
@@ -46,6 +48,21 @@ namespace Nurun.Models
                 }
 
                 return r;
+            }
+        }
+
+        public IEnumerable<SelectListItem> obtenerDoctorsSelect()
+        {
+            using (NurunEntities db = new NurunEntities())
+            {
+                var doctors = db.Medicos.ToList<Medicos>().Select(x =>
+                        new SelectListItem
+                        {
+                            Value = x.idMedico.ToString(),
+                            Text = string.Format("{0} {1}", x.Nombres, x.Apellidos)
+                        });
+
+                return new SelectList(doctors, "Value", "Text");
             }
         }
     }

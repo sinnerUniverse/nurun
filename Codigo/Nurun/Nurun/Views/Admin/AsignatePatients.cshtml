@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Nurun.Data.Usuarios>
+
+@{
+    ViewBag.Title = "AsignatePatients";
+}
+
+<h2>Pacientes</h2>
+@using (Html.BeginForm())
+{ 
+    <p>
+        <input value="Guardar" type="submit" onclick="return confirm('Al reasignar un paciente puede provocar perdida de visitas médicas, ¿desea continuar?');"/>
+    </p>
+    <table class="table">
+        <tr>        
+            <th>
+                @Html.DisplayNameFor(model => model.Nombres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellidos)
+            </th>        
+            <th>Asignado</th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>       
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellidos)
+            </td>        
+            <td>
+                @if (item.EstaSeleccionado)
+                {
+                    <input name="chkSeleccionado" type="checkbox" class="check" value="@item.IdUsuario" checked />
+                }
+                else
+                {
+                    <input name="chkSeleccionado" type="checkbox" class="check" value="@item.IdUsuario"/>
+                }
+                
+            </td>
+        </tr>
+    }
+    </table>
+}
+<p>
+    @Html.ActionLink("Regresar", "Doctors")
+</p>

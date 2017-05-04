@@ -12,7 +12,9 @@ namespace Nurun.Models
         {
             using (NurunEntities db = new NurunEntities())
             {
-                var obj = db.Usuarios.Where(a => a.Usuario.Equals(usuario.Usuario) && a.Password.Equals(usuario.Password) && a.EstaActivo).FirstOrDefault();
+                var obj = db.Usuarios.Where(a => a.Usuario.Equals(usuario.Usuario) 
+                    && a.Password.Equals(usuario.Password) 
+                    && a.EstaActivo).FirstOrDefault();
                 return obj;
             }
         }
@@ -70,6 +72,59 @@ namespace Nurun.Models
             {
                 var usuarios = db.Usuarios.Where(u => u.IdRol != 2 && !u.EstaActivo).ToList<Usuarios>();
                 return usuarios;
+            }
+        }
+
+        public Resultados asignarPaciente(string seleccionados, int idMedico)
+        {
+            using (NurunEntities db = new NurunEntities())
+            {
+                Resultados r = new Resultados();
+                int[] selectedList = seleccionados.Split(',').Select(int.Parse).ToArray();
+
+                using (var dbContextTransaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        db.Usuarios.Where(u => u.IdMedico == idMedico).ToList().ForEach(us => {
+                            us.IdMedico = null;
+                            us.ConfirmPassword = us.Password;
+                        });
+                        db.Usuarios.Where(u => selectedList.Contains(u.IdUsuario)).ToList().ForEach(us => {
+                            us.IdMedico = idMedico;
+                            us.FechaModificacion = DateTime.Now;
+                            us.ConfirmPassword = us.Password;
+                        });                       
+
+                        db.SaveChanges();
+                        dbContextTransaction.Commit();
+                        r.Resultado = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        r.Mensaje = ex.Message;
+                        r.Resultado = false;
+                        dbContextTransaction.Rollback(); 
+                    }
+
+                    return r;
+                }
+            }
+        } 
+
+        public List<Usuarios> obtenerPacientes(int idMedico)
+        {
+            using (NurunEntities db = new NurunEntities())
+            {
+                var pacientesSinMedico = db.Usuarios.Where(u => u.EstaActivo
+                    && object.Equals(null, u.IdMedico)
+                    && u.IdRol != 2);
+
+                var pacientesDelMedico = db.Usuarios.Where(u => u.EstaActivo
+                    && u.IdMedico == idMedico
+                    && u.IdRol != 2);
+
+                return pacientesSinMedico.Union(pacientesDelMedico).ToList<Usuarios>(); ;
             }
         }
     }

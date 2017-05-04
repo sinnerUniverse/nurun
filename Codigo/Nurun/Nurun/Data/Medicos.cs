@@ -28,6 +28,7 @@ namespace Nurun.Data
         public string Nombres { get; set; }
         [Required]
         public string Apellidos { get; set; }
+        public string NombreCompleto { get { return string.Format("{0} {1}", Nombres, Apellidos); } }
         public Nullable<System.DateTime> FechaCreacion { get; set; }
         [Required]
         [Display(Name = "Hospital")]
@@ -39,4 +40,6 @@ namespace Nurun.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RelHospitalMedico> RelHospitalMedico { get; set; }
     }
+
+    public class MedicosDTO : Medicos { }
 }
