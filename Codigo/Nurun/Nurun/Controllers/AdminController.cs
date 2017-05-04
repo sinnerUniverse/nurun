@@ -191,7 +191,36 @@ namespace Nurun.Controllers
             ViewBag.Medicos = dModel.obtenerDoctorsSelect();
             ViewBag.Clinicas = hModel.obtenerHospitalesSelect();
             ViewBag.Pacientes = uModel.obtenerPacientesSelect();
-            return View(vModel.obtenerVisitas(0));
+            return View(vModel.obtenerVisitasReporte(null, null, null));
+        }
+
+        [HttpPost]
+        public ActionResult Reports(FormCollection form)
+        {
+            if (isNotLoged())
+                return RedirectToAction("Login", "Home");
+
+            int ? idUsuario = object.Equals(null, Request.Form["idUsuario"]) ? null : (string.IsNullOrEmpty(Request.Form["idUsuario"]) ? null : new int?(int.Parse(Request.Form["idUsuario"].ToString())));
+            int? idHospital = object.Equals(null, Request.Form["idHospital"]) ? null : (string.IsNullOrEmpty(Request.Form["idHospital"]) ? null : new int?(int.Parse(Request.Form["idHospital"].ToString())));
+            int? idMedico = object.Equals(null, Request.Form["idMedico"]) ? null : (string.IsNullOrEmpty(Request.Form["idMedico"]) ? null : new int?(int.Parse(Request.Form["idMedico"].ToString())));
+
+            VisitasMedicasModel model = new VisitasMedicasModel();
+
+            List<Visitas> visitas = model.obtenerVisitasReporte(idUsuario, idHospital, idMedico);
+
+            if (visitas.Count == 0)
+            {
+                Response.Write("<script>alert('No se encontraron resultados con los filtros seleccionados.');</script>");
+            }            
+
+            DoctorsModel dModel = new DoctorsModel();
+            HospitalesModel hModel = new HospitalesModel();
+            UsuariosModel uModel = new UsuariosModel();
+
+            ViewBag.Medicos = dModel.obtenerDoctorsSelect();
+            ViewBag.Clinicas = hModel.obtenerHospitalesSelect();
+            ViewBag.Pacientes = uModel.obtenerPacientesSelect();
+            return View(visitas);            
         }
 
         private bool isNotLoged()

@@ -4,6 +4,8 @@
     ViewBag.Title = "Reports";
 }
 
+@using (Html.BeginForm())
+{
 <h2>Reportes</h2>
     <table class="table">
         <tr>
@@ -33,6 +35,7 @@
             </th>
         </tr>
     </table>
+
     <table class="table">
         <tr>
             <th>
@@ -62,6 +65,7 @@
         }
 
     </table>
-    <p>
-        @Html.ActionLink("Regresar", "ActivateUsers")
-    </p>
+}
+<p>
+    @Html.ActionLink("Regresar", "ActivateUsers")
+</p>

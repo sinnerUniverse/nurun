@@ -34,6 +34,7 @@ namespace Nurun.Controllers
                     Session["UserID"] = obj.IdUsuario.ToString();
                     Session["UserName"] = obj.Usuario.ToString();
                     Session["RolID"] = obj.IdRol.ToString();
+                    Session["MedicoID"] = object.Equals(null, obj.IdMedico) ? null : obj.IdMedico.ToString();
                     if(obj.IdRol == 1)
                         return RedirectToAction("Visitas", "User");
                     else if (obj.IdRol == 2)

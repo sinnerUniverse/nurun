@@ -18,8 +18,9 @@ namespace Nurun.Controllers
 
             VisitasMedicasModel model = new VisitasMedicasModel();
             var idUsuario = int.Parse(Session["UserID"].ToString());
+            var noTieneMedico = object.Equals(null, Session["MedicoID"]);
             var visitas = model.obtenerVisitas(idUsuario);
-            if(visitas.Count == 0)
+            if(noTieneMedico)
                 Response.Write("<script>alert('No cuenta con un médico asignado, verifique con su administrador para que le asigne uno y pueda agendar una visita médica.');</script>");
             return View(visitas);
         }

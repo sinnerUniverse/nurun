@@ -56,5 +56,78 @@ namespace Nurun.Models
                 return visitas;
             }
         }
+
+        public List<Visitas> obtenerVisitasReporte(int? idUsuario, int? idHospital, int? idMedico)
+        {
+            using (NurunEntities db = new NurunEntities())
+            {
+
+                var visitas = (from v in db.VisitaMedica
+                               join u in db.Usuarios on v.idUsuario equals u.IdUsuario
+                               join m in db.Medicos on u.IdMedico equals m.idMedico
+                               join h in db.Hospitales on m.idHospital equals h.IdHospital
+                               where (idUsuario == null || u.IdUsuario == idUsuario.Value)
+                                && (idHospital == null || m.idHospital == idHospital.Value)
+                                && (idMedico == null || u.IdMedico == idMedico.Value)
+                               select new Visitas()
+                               {
+                                   Cita = v,
+                                   MedicoAsignado = new MedicosDTO()
+                                   {
+                                       idMedico = m.idMedico,
+                                       Nombres = m.Nombres,
+                                       Apellidos = m.Apellidos,
+                                       idHospital = m.idHospital,
+                                       HospitalNombre = h.Nombre
+                                   }
+                               }).ToList<Visitas>();
+
+                return visitas;
+
+                // La forma fea 
+                //if (object.Equals(null, idUsuario) && object.Equals(null, idHospital) && object.Equals(null, idMedico))
+                //    return visitas;
+                //else if (!object.Equals(null, idUsuario) && object.Equals(null, idHospital) && object.Equals(null, idMedico))
+                //    return visitas.Where(v => v.Cita.idUsuario == idUsuario.Value).ToList<Visitas>();
+                //else if (!object.Equals(null, idUsuario) && !object.Equals(null, idHospital) && object.Equals(null, idMedico))
+                //{
+                //    return visitas.Where(v =>
+                //        v.Cita.idUsuario == idUsuario.Value
+                //        && v.MedicoAsignado.idHospital == idHospital.Value).ToList<Visitas>();
+                //}
+                //else if (!object.Equals(null, idUsuario) && !object.Equals(null, idHospital) && !object.Equals(null, idMedico))
+                //{
+                //    return visitas.Where(v =>
+                //        v.Cita.idUsuario == idUsuario.Value
+                //        && v.MedicoAsignado.idHospital == idHospital.Value
+                //        && v.MedicoAsignado.idMedico == idMedico.Value).ToList<Visitas>();
+                //}
+                //else if (!object.Equals(null, idUsuario) && object.Equals(null, idHospital) && !object.Equals(null, idMedico))
+                //{
+                //    return visitas.Where(v =>
+                //        v.Cita.idUsuario == idUsuario.Value
+                //        && v.MedicoAsignado.idMedico == idMedico.Value).ToList<Visitas>();
+                //}
+                //else if (object.Equals(null, idUsuario) && !object.Equals(null, idHospital) && object.Equals(null, idMedico))
+                //{
+                //    return visitas.Where(v =>
+                //        v.MedicoAsignado.idHospital == idHospital.Value).ToList<Visitas>();
+                //}
+                //else if (object.Equals(null, idUsuario) && !object.Equals(null, idHospital) && !object.Equals(null, idMedico))
+                //{
+                //    return visitas.Where(v =>
+                //        v.MedicoAsignado.idHospital == idHospital.Value
+                //        && v.MedicoAsignado.idMedico == idMedico.Value).ToList<Visitas>();
+                //}
+                //else if (object.Equals(null, idUsuario) && object.Equals(null, idHospital) && !object.Equals(null, idMedico))
+                //{
+                //    return visitas.Where(v =>
+                //        v.MedicoAsignado.idMedico == idMedico.Value).ToList<Visitas>();
+                //}
+                //else
+                //    return new List<Visitas>();
+
+            }
+        }
     }
 }
